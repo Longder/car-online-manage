@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.longder.car.repository.CarRepository">
+
+
+    <resultMap id="CarResultMap" type="com.longder.car.entity.po.Car">
+        <id column="id_" property="id"/>
+        <result column="sys_user_id_" property="sysUserId"/>
+        <result column="license_" property="license"/>
+        <result column="brand_" property="brand"/>
+        <result column="displacement_" property="displacement"/>
+    </resultMap>
+</mapper>

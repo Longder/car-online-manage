@@ -26,7 +26,7 @@
                         <span class="input-group-btn">
                         <input type="button" class="btn btn-success" data-toggle="modal"
                                data-target="#carModal"
-                               onclick="openModal('','carModal')"
+                               onclick="openModal('/admin/car/toAdd','carModal')"
                                value="新增绑定车辆"/>
                         </span>
                     </div>
@@ -46,44 +46,21 @@
                         </tr>
                         </thead>
                         <tbody>
-
-                        <tr>
-                            <td>1</td>
-                            <td>京A 88888</td>
-                            <td>宝马</td>
-                            <td>5.0T</td>
+                        <tr th:each="car:${carList}">
+                            <td th:text="${carStat.index+1}"></td>
+                            <td th:text="${car.license}"></td>
+                            <td th:text="${car.brand}">宝马</td>
+                            <td th:text="${car.displacement}">5.0T</td>
                             <td>
-                                <a href="#" class="btn btn-sm btn-warning"
-                                   data-toggle="modal"
-                                   data-target="#carModal"
-                                   onclick="openModal('/admin/car/detail','carModal')">
+                                <a th:href="@{/admin/car/detail}" href="#" class="btn btn-sm btn-warning">
                                     查看实时信息
                                 </a>
                                 <a href="#" class="btn btn-sm btn-danger"
                                    onclick="return confirm('确定删除吗？')">
-                                    删除绑定
+                                    解除绑定
                                 </a>
                             </td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>京B 88888</td>
-                            <td>奔驰</td>
-                            <td>5.0T</td>
-                            <td>
-                                <a href="#" class="btn btn-sm btn-warning"
-                                   data-toggle="modal"
-                                   data-target="#carModal"
-                                   onclick="openModal('/admin/car/detail','carModal')">
-                                    查看实时信息
-                                </a>
-                                <a href="#" class="btn btn-sm btn-danger"
-                                   onclick="return confirm('确定删除吗？')">
-                                    删除绑定
-                                </a>
-                            </td>
-                        </tr>
-
                         </tbody>
                     </table>
                 </div>

@@ -1,47 +1,112 @@
-<div class="modal-dialog modal-lg">
-    <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">
-                <span aria-hidden="true">×</span>
-                <span class="sr-only">Close</span>
-            </button>
-            <h4 class="modal-title">实时信息</h4>
-        </div>
-        <small class="font-bold">
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="ibox float-e-margins">
-                            <div class="ibox-title">
-                                <h5>仪表盘</h5>
-                                <div class="ibox-tools">
-                                    <a class="collapse-link">
-                                        <i class="fa fa-chevron-up"></i>
-                                    </a>
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="graph_flot.html#">
-                                        <i class="fa fa-wrench"></i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-user">
-                                        <li><a href="graph_flot.html#">选项1</a>
-                                        </li>
-                                        <li><a href="graph_flot.html#">选项2</a>
-                                        </li>
-                                    </ul>
-                                    <a class="close-link">
-                                        <i class="fa fa-times"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="ibox-content">
-                                <div class="echarts" id="echarts-gauge-chart"></div>
-                            </div>
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<!--引入统一头-->
+<head th:include="import/head :: head"></head>
+
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.14&key=9136b31f01d571688cde091d98fca63d"></script>
+<body class="gray-bg">
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>基本信息</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <h1 class="no-margins">云A 89J57</h1>
+                            <small>车牌号</small>
+                        </div>
+                        <div class="col-xs-4">
+                            <h1 class="no-margins">斯柯达</h1>
+                            <small>品牌</small>
+                        </div>
+                        <div class="col-xs-4">
+                            <h1 class="no-margins">1.4T</h1>
+                            <small>排量</small>
                         </div>
                     </div>
                 </div>
             </div>
-        </small>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <span class="label label-success pull-right"></span>
+                    <h5>里程</h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins">20000 KM</h1>
+                    <small>总行驶</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <span class="label label-info pull-right">自启动起</span>
+                    <h5>里程</h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins">32 KM</h1>
+                    <small>当前行驶</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <span class="label label-primary pull-right">平均</span>
+                    <h5>油耗</h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins">8.0 L/km</h1>
+                    <small>平均油耗</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <span class="label label-danger pull-right">瞬时</span>
+                    <h5>油耗</h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins">10.0 L/km</h1>
+                    <small>瞬时油耗</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>仪表盘</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="echarts" id="echarts-gauge-chart"></div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-xs-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>当前位置</h5>
+                </div>
+                <div class="ibox-content">
+                    <div id="mapContainer" style="width:500px;height:300px;"></div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+<!--引入统一JS-->
+<script th:replace="import/script :: script"></script>
 <script type="text/javascript">
     $(function(){
         var gaugeChart = echarts.init(document.getElementById("echarts-gauge-chart"));
@@ -232,5 +297,10 @@
         };
         gaugeChart.setOption(gaugeoption);
         $(window).resize(gaugeChart.resize);
+
+
+        //高德地图
+        var map = new AMap.Map('mapContainer');
     });
 </script>
+</body>
