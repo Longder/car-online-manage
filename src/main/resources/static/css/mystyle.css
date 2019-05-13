@@ -1,0 +1,29 @@
+.rowbj{
+	
+    background-color: #e7ecf1;
+}
+
+.rowbj .form-group{
+	height:50px;
+}
+.rowbj .form-group h1{
+	font:bold 22px/30px sans-serif;
+	margin:12px 0;
+	}
+
+.navbar-form-custom{
+	float: left;
+	height: 50px;
+	padding: 0;
+	margin:0 0 0 20px;
+	width: 80%;
+	display: inline-table;
+}
+.wellcom h1{
+	font:bold 22px/30px sans-serif;
+	margin:12px 20px;
+	
+}
+/* .dropdown-menu{
+	background-color: #333;;
+} */
