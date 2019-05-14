@@ -16,15 +16,15 @@
                 <div class="ibox-content">
                     <div class="row">
                         <div class="col-xs-4">
-                            <h1 class="no-margins">云A 89J57</h1>
+                            <h1 class="no-margins" th:text="${car.license}"></h1>
                             <small>车牌号</small>
                         </div>
                         <div class="col-xs-4">
-                            <h1 class="no-margins">斯柯达</h1>
+                            <h1 class="no-margins" th:text="${car.brand}"></h1>
                             <small>品牌</small>
                         </div>
                         <div class="col-xs-4">
-                            <h1 class="no-margins">1.4T</h1>
+                            <h1 class="no-margins" th:text="${car.displacement}"></h1>
                             <small>排量</small>
                         </div>
                     </div>
@@ -97,9 +97,10 @@
         <div class="col-xs-6">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>当前位置</h5>
+                    <h5>实时位置</h5>
                 </div>
                 <div class="ibox-content">
+                    <button id="test-button" class="btn btn-default btn-rounded">轨迹回放</button>
                     <div id="mapContainer" style="width:500px;height:450px;"></div>
                 </div>
             </div>
@@ -323,10 +324,13 @@
         }, 5000);
 
 
+        var lineArr = [ [116.478935,39.997761],[116.478939,39.997825],[116.478912,39.998549],[116.478912,39.998549],[116.478998,39.998555],[116.478998,39.998555],[116.479282,39.99856],[116.479658,39.998528],[116.480151,39.998453],[116.480784,39.998302],[116.480784,39.998302],[116.481149,39.998184],[116.481573,39.997997],[116.481863,39.997846],[116.482072,39.997718],[116.482362,39.997718],[116.483633,39.998935],[116.48367,39.998968],[116.484648,39.999861] ];
+
+
         //高德地图
         var map = new AMap.Map("mapContainer", {
             resizeEnable: true,
-            center: [116.397428, 39.90923],
+            center: [116.478935,39.997761],
             zoom: 50
         });
 
@@ -335,7 +339,7 @@
 
         var marker = new AMap.Marker({
             map: map,
-            position: [116.397474,39.908696],
+            position: [116.478935,39.997761],
             icon: "https://webapi.amap.com/images/car.png",
             size: new AMap.Size(25,25),
             imageSize: new AMap.Size(25, 25),
@@ -344,33 +348,15 @@
         });
         marker.setMap(map);
 
+        $("#test-button").click(function(){
+            marker.moveAlong(lineArr, 200);
+        });
+
     });
 
-    /**
-     * 随机整数 范围
-     */
-    function randomInteger(n, m) {
-        return Math.floor(Math.random() * (m - n + 1) + n);
-    }
 
-    function randomNum(maxNum, minNum, decimalNum) {
-        var max = 0, min = 0;
-        minNum <= maxNum ? (min = minNum, max = maxNum) : (min = maxNum, max = minNum);
-        switch (arguments.length) {
-            case 1:
-                return Math.floor(Math.random() * (max + 1));
-                break;
-            case 2:
-                return Math.floor(Math.random() * (max - min + 1) + min);
-                break;
-            case 3:
-                return (Math.random() * (max - min) + min).toFixed(decimalNum);
-                break;
-            default:
-                return Math.random();
-                break;
-        }
-    }
+
+
 
     //总里程
     var totalRange = 20000;
@@ -392,6 +378,28 @@
 
         $("#currentRange").text(currentRange.toFixed(1) + " KM");
         $("#totalRange").text(totalRange.toFixed(1) + " KM");
+    }
+
+    /**
+     * 取随机数
+     */
+    function randomNum(maxNum, minNum, decimalNum) {
+        var max = 0, min = 0;
+        minNum <= maxNum ? (min = minNum, max = maxNum) : (min = maxNum, max = minNum);
+        switch (arguments.length) {
+            case 1:
+                return Math.floor(Math.random() * (max + 1));
+                break;
+            case 2:
+                return Math.floor(Math.random() * (max - min + 1) + min);
+                break;
+            case 3:
+                return (Math.random() * (max - min) + min).toFixed(decimalNum);
+                break;
+            default:
+                return Math.random();
+                break;
+        }
     }
 </script>
 </body>

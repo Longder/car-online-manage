@@ -8,6 +8,7 @@ create table SYS_USER
     password_   varchar(100) null comment '密码',
     gender_     varchar(50)  null comment '性别',
     active_     bit          null comment '有效性',
+    phone_      varchar(100)
     constraint SYS_USER_pk
         primary key (id_)
 )

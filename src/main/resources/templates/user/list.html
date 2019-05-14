@@ -40,25 +40,25 @@
                         </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>张三丰</td>
-                                <td>sf</td>
-                                <td>1388888888</td>
+                        <tr th:each="user:${userList}">
+                            <td th:text="${userStat.index+1}"></td>
+                                <td th:text="${user.name}"></td>
+                                <td th:text="${user.loginName}"></td>
+                                <td th:text="${user.phone}"></td>
                                 <td>
-                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
-                                            data-target="#userModal"
-                                            onclick="openModal('${ctx}/student/toUpdate?studentId=${student.id}','studentModal')">
-                                        修改
-                                    </button>
-                                    <a href="#" class="btn btn-sm btn-danger"
+<!--                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"-->
+<!--                                            data-target="#userModal"-->
+<!--                                            onclick="openModal('${ctx}/student/toUpdate?studentId=${student.id}','studentModal')">-->
+<!--                                        修改-->
+<!--                                    </button>-->
+                                    <a th:href="@{/admin/user/deleteUser(userId=${user.id})}" class="btn btn-sm btn-danger"
                                        onclick="return confirm('确定删除吗？')">
                                         删除
                                     </a>
                                     <a href="#" class="btn btn-sm btn-warning"
                                        data-toggle="modal"
                                        data-target="#userModal"
-                                       onclick="openModal('/admin/user/userCarList','userModal')">
+                                       th:onclick="'javascript:openModal(\'/admin/user/userCarList?userId='+${user.id}+'\',\'userModal\')'">
                                         查看已绑定车辆
                                     </a>
                                 </td>

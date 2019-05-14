@@ -47,4 +47,37 @@ public class CarManageServiceImpl implements CarManageService {
         assert currentUser != null;
         return carRepository.listByUserId(currentUser.getId());
     }
+
+    /**
+     * 查看某个用户名下的车辆
+     *
+     * @param userId
+     * @return
+     */
+    @Override
+    public List<Car> listCarForUser(Long userId) {
+        return carRepository.listByUserId(userId);
+    }
+
+    /**
+     * 通过id获取一辆汽车
+     *
+     * @param carId
+     * @return
+     */
+    @Override
+    public Car getOneCar(Long carId) {
+        return carRepository.getOne(carId);
+    }
+
+    /**
+     * 解绑一辆车
+     *
+     * @param carId
+     */
+    @Override
+    @Transactional
+    public void deleteOneCar(Long carId) {
+        carRepository.delete(carId);
+    }
 }

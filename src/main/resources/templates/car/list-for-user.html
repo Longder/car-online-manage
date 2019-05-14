@@ -52,11 +52,11 @@
                             <td th:text="${car.brand}">宝马</td>
                             <td th:text="${car.displacement}">5.0T</td>
                             <td>
-                                <a th:href="@{/admin/car/detail}" href="#" class="btn btn-sm btn-warning">
+                                <a th:href="@{/admin/car/detail(carId=${car.id})}" href="#" class="btn btn-sm btn-warning">
                                     查看实时信息
                                 </a>
-                                <a href="#" class="btn btn-sm btn-danger"
-                                   onclick="return confirm('确定删除吗？')">
+                                <a th:href="@{/admin/car/delete(carId=${car.id})}" class="btn btn-sm btn-danger"
+                                   onclick="return confirm('确定解除绑定吗？')">
                                     解除绑定
                                 </a>
                             </td>

@@ -29,7 +29,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
      */
     @Override
     public void configure(WebSecurity web) {
-        web.ignoring().antMatchers("/static/**","/","/toRegister");
+        web.ignoring().antMatchers("/static/**","/","/toRegister","/checkLoginName");
     }
 
     @Override

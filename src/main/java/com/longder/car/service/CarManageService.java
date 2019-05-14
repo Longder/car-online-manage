@@ -20,4 +20,24 @@ public interface CarManageService {
      * @return
      */
     List<Car> listCarForCurrentUser();
+
+    /**
+     * 查看某个用户名下的车辆
+     * @param userId
+     * @return
+     */
+    List<Car> listCarForUser(Long userId);
+
+    /**
+     * 通过id获取一辆汽车
+     * @param carId
+     * @return
+     */
+    Car getOneCar(Long carId);
+
+    /**
+     * 解绑一辆车
+     * @param carId
+     */
+    void deleteOneCar(Long carId);
 }

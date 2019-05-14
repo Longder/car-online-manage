@@ -8,5 +8,6 @@
         <result column="password_" property="password"/>
         <result column="gender_" property="gender"/>
         <result column="active_" property="active"/>
+        <result column="phone_" property="phone"/>
     </resultMap>
 </mapper>

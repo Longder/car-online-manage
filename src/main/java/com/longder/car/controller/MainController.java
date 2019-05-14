@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 
@@ -45,6 +46,17 @@ public class MainController {
     public String toRegister(){
         logger.debug("去注册页面！");
         return "register";
+    }
+
+
+    /**
+     * 检查登录名
+     * @return
+     */
+    @ResponseBody
+    @PostMapping("/checkLoginName")
+    public Boolean checkLoginName(String loginName){
+        return userManageService.checkLoginName(loginName);
     }
 
     /**

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <!--引入统一头-->
 <head th:include="import/head :: head"></head>
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
@@ -27,13 +27,13 @@
                         车
                     </div>
                 </li>
-                <li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')">
                     <a class="J_menuItem" th:href="@{/admin/user/list}" title="用户管理">
                         <i class="fa fa-users"></i>
                         <span class="nav-label">用户管理</span>
                     </a>
                 </li>
-                <li>
+                <li sec:authorize="hasRole('ROLE_USER')">
                     <a class="J_menuItem" th:href="@{/admin/car/list}" title="我的车辆">
                         <i class="fa fa-car"></i>
                         <span class="nav-label">我的车辆</span>
@@ -78,7 +78,8 @@
                     </li>
                 </ul>
                 <a id="changePasswordButton" type="button" class="roll-nav roll-right J_tabExit" data-toggle="modal"
-                   data-target="#editPasswordModal">
+                   data-target="#editPasswordModal"
+                   onclick="openModal('/admin/user/toChangePassword','editPasswordModal')">
                     修改密码
                 </a>
             </div>
@@ -97,6 +98,7 @@
     </div>
     <!--右侧部分结束-->
 </div>
+<div class="modal inmodal fade" id="editPasswordModal" tabindex="-1" role="dialog" aria-hidden="true"></div>
 <!--引入统一JS-->
 <script th:replace="import/script :: script"></script>
 </body>

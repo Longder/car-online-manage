@@ -1,10 +1,7 @@
 package com.longder.car.repository;
 
 import com.longder.car.entity.po.Car;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.ResultMap;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -32,4 +29,20 @@ public interface CarRepository {
     @Select("SELECT * FROM CAR WHERE sys_user_id_ = #{sysUserId}")
     @ResultMap("com.longder.car.repository.CarRepository.CarResultMap")
     List<Car> listByUserId(Long sysUserId);
+
+    /**
+     * 根据id查询一个
+     * @param id
+     * @return
+     */
+    @Select("SELECT * FROM CAR WHERE id_=#{id}")
+    @ResultMap("com.longder.car.repository.CarRepository.CarResultMap")
+    Car getOne(Long id);
+
+    /**
+     * 删除一辆车
+     * @param id
+     */
+    @Delete("DELETE FROM CAR WHERE id_ = #{id}")
+    void delete(Long id);
 }

@@ -6,7 +6,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>车联网 - 注册</title>
-    <link rel="shortcut icon" href="favicon.ico">
     <link th:href="@{/static/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/static/css/font-awesome.css}" rel="stylesheet">
     <link th:href="@{/static/css/plugins/iCkeck/custom.css}" rel="stylesheet">
@@ -35,7 +34,7 @@
                 <input name="loginName" type="text" class="form-control" placeholder="请输入登录名"/>
             </div>
             <div class="form-group">
-                <input name="loginName" type="text" class="form-control" placeholder="请输入手机号"/>
+                <input name="phone" type="text" class="form-control" placeholder="请输入手机号"/>
             </div>
             <div class="form-group">
                 <input name="password" type="password" class="form-control" placeholder="请输入密码">
@@ -61,16 +60,43 @@
 <script th:src="@{/static/js/plugins/validate/jquery.validate.min.js}"></script>
 <script th:src="@{/static/js/plugins/validate/messages_zh.min.js}"></script>
 <script>
+    //自定义登录名重复认证
+    jQuery.validator.addMethod("checkLoginName", function (value, element) {
+        var flag = false;
+        $.ajax({
+            type: "post",
+            url: "/checkLoginName",
+            data: {loginName: value},
+            async: false,
+            success: function (data) {
+                if (data == false) {
+                    flag = false;
+                } else {
+                    flag = true;
+                }
+            }
+        });
+        return flag;
+    }, "用户名已存在");
+
     $(function () {
         //注册表单验证
         $("#register-form").validate({
             rules:{
                 name:"required",
-                loginName:"required",
+                loginName:{
+                    "required":true,
+                    "checkLoginName":true
+                },
+                phone:"required",
                 password:"required"
             },messages:{
                 name:"请输入姓名",
-                loginName:"请输入登录名",
+                loginName:{
+                    "required":"请输入登录名",
+                    "checkLoginName":"登录名已存在"
+                },
+                phone:"情输入联系电话",
                 password:"请输入密码"
             }
         });

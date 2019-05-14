@@ -35,6 +35,11 @@ public class SysUser extends BaseIdEntity implements UserDetails {
     private String gender;
 
     /**
+     * 联系电话
+     */
+    private String phone;
+
+    /**
      * 有效性
      */
     private Boolean active = true;

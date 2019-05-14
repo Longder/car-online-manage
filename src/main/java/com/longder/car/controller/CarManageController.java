@@ -34,7 +34,8 @@ public class CarManageController {
      * @return
      */
     @GetMapping("/detail")
-    public String detail(){
+    public String detail(Long carId,Model model){
+        model.addAttribute("car",carManageService.getOneCar(carId));
         return "car/car-detail";
     }
 
@@ -54,6 +55,17 @@ public class CarManageController {
     @PostMapping("/add")
     public String add(Car car){
         carManageService.saveOneCar(car);
+        return "redirect:/admin/car/list";
+    }
+
+    /**
+     * 解除绑定汽车
+     * @param carId
+     * @return
+     */
+    @GetMapping("/delete")
+    public String deleteCar(Long carId){
+        carManageService.deleteOneCar(carId);
         return "redirect:/admin/car/list";
     }
 }
